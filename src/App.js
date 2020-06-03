@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
-import Base from './components/Base';
-import Toppings from './components/Toppings';
-import Order from './components/Order';
+
+const Base = React.lazy(() => import('./components/Base'));
+const Toppings = lazy(() => import('./components/Toppings'));
+const Order = lazy(() => import('./components/Order'));
 
 function App() {
   const [pizza, setPizza] = useState({ base: '', toppings: [] });
@@ -28,13 +29,19 @@ function App() {
       <Header />
       <Switch>
         <Route path="/base">
-          <Base addBase={addBase} pizza={pizza} />
+          <Suspense fallback="loading...">
+            <Base addBase={addBase} pizza={pizza} />
+          </Suspense>
         </Route>
         <Route path="/toppings">
-          <Toppings addTopping={addTopping} pizza={pizza} />
+          <Suspense fallback="loading...">
+            <Toppings addTopping={addTopping} pizza={pizza} />
+          </Suspense>
         </Route>
         <Route path="/order">
-          <Order pizza={pizza} />
+          <Suspense fallback="loading...">
+            <Order pizza={pizza} />
+          </Suspense>
         </Route>
         <Route path="/">
           <Home />
