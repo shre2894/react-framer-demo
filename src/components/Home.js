@@ -18,7 +18,6 @@ const Home = () => {
             textShadow: '0px 0px 8px rgb(255,255,255)',
             boxShadow: '0px 0px 8px rgb(255,255,255)',
           }}
-          whileTap={{ scale: 0 }}
         >
           Create Your Pizza
         </motion.button>
