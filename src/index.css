@@ -6,6 +6,9 @@
   font-weight: 300;
   font-style: normal;
 }
+* {
+  outline-color: #fff;
+}
 
 /* reset & common styles */
 body,
